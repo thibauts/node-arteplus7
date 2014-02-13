@@ -3,9 +3,7 @@ var _         = require('lodash');
 var cheerio   = require('cheerio');
 var rtmpdump  = require('rtmpdump');
 
-
 var BASE_URL = 'http://www.arte.tv';
-
 
 function getPage(url, callback) {
   var req = http.get(url, function(res) {
@@ -29,7 +27,6 @@ function getPage(url, callback) {
   req.end();
 }
 
-
 function getJson(url, callback) {
   getPage(url, function(err, body) {
     if(err) return callback(err);
@@ -42,7 +39,6 @@ function getJson(url, callback) {
     callback(null, json);
   });
 }
-
 
 function getVideos(lang, callback) {
   if(_.isFunction(lang)) {
@@ -68,7 +64,6 @@ function getVideos(lang, callback) {
   });
 
 }
-
 
 function getVideo(url, lang, callback) {
   if(_.isFunction(lang)) {
@@ -161,36 +156,16 @@ function getVideo(url, lang, callback) {
 
 }
 
-
 function createStream(stream) {
   return rtmpdump.createStream({
     flashVer: 'WIN 12,0,0,44',
     swfVfy: 'http://www.arte.tv/arte_vp/jwplayer6/mediaplayer.6.6.swf',
-    pageUrl: 'http://www.arte.tv/player/v2/index.php',//=' + encodeURIComponent(infosUrl) + '&lang=fr_FR&config=arte_tvguide&rendering_place=' + encodeURIComponent(url),
+    pageUrl: 'http://www.arte.tv/player/v2/index.php',
     rtmp: stream.rtmp,
     playpath: 'mp4:' + stream.playpath,
   });
 }
 
-
 module.exports.getVideos = getVideos;
 module.exports.getVideo = getVideo;
 module.exports.createStream = createStream;
-
-
-/*
-var fs = require('fs');
-
-var url = 'http://www.arte.tv/guide/fr/047285-038/paysages-d-ici-et-d-ailleurs?autoplay=1';
-getVideo(url, function(err, video) {
-  if(err) throw err;
-
-  console.log(video);
-
-  var stream = createStream(streams.shift());
-  stream.pipe(fs.createWriteStream(info.title + '.mp4'));
-  
-});
-*/
-
-
