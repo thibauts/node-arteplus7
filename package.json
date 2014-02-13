@@ -2,6 +2,8 @@
   "name": "arteplus7",
   "version": "0.1.0",
   "description": "",
+  "author": "thibauts",
+  "license": "MIT",
   "main": "index.js",
   "dependencies": {
     "cheerio": "~0.13.1",
@@ -11,10 +13,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thibauts/node-arteplus7.git"
+  },
   "keywords": [
     "arte",
     "replay"
-  ],
-  "author": "thibauts",
-  "license": "MIT"
+  ]
 }
