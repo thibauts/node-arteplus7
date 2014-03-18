@@ -50,14 +50,23 @@ function getVideos(lang, callback) {
     return callback(new Error('lang must be either "fr" or "de"'));
   }
 
-  url = BASE_URL + '/guide/' + lang + '/plus7.json?page=1&per_page=500';
+  var url = BASE_URL + '/guide/' + lang + '/plus7.json?page=1&per_page=500';
 
   getJson(url, function(err, json) {
     if(err) return callback(err);
 
     var videos = json.videos.map(function(video) {
-      video.url = BASE_URL + video.url;
-      return video;
+      return {
+        image: video.image_url,
+        title: video.title,
+        desc: video.desc,
+        duration: video.duration * 60,
+        url: BASE_URL + video.url,
+        views: Number(video.video_views.replace(/[^0-9]/g, '')),
+        channels: video.video_channels.split(', '),
+        airdate: video.airdate_long.replace(/\s+/g, ' '),
+        until: video.video_rights_until
+      };
     });
 
     callback(null, videos);
@@ -111,7 +120,6 @@ function getVideo(url, lang, callback) {
           delete stream.precedence;
           return stream;
         })
-        .where({ mediaType: 'rtmp' })
         .sortBy('bitrate')
         .reverse()
         .map(function(stream) {
