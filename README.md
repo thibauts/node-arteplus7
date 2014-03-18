@@ -5,6 +5,8 @@ arteplus7
 This module provides a clean wrapper around the arte+7 website. It enables you to list available videos, fetch video metadata and 
 stream media content wherever you like.
 
+'fr' and 'de' languages supported.
+
 Installation
 ------------
 
@@ -19,7 +21,7 @@ List available videos
 ``` javascript
 var arteplus7 = require('arteplus7');
 
-arteplus7.getVideos('fr', function(err, videos) {
+arteplus7.getVideos('fr', function(err, videos) { // 'de' works too
   if(err) throw err;
   videos.forEach(function(video) {
     console.log(video.title);
