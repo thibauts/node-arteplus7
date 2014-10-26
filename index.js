@@ -103,8 +103,8 @@ function getVideo(url, lang, callback) {
       };
 
       versions = {
-        'fr': ['VF', 'VOF', 'VO-STF', 'VF-STF'],
-        'de': ['VA', 'VOA', 'VO-STA', 'VA-STA']
+        'fr': ['VF', 'VOF', 'VO-STF', 'VF-STF', 'VO'],
+        'de': ['VA', 'VOA', 'VO-STA', 'VA-STA', 'VO']
       };
 
       var streams = _(tmp.VSR)
