@@ -1,5 +1,6 @@
 arteplus7
-=============
+=========
+
 ### Node client for the arte+7 website
 
 This module provides a clean wrapper around the arte+7 website. It enables you to list available videos, fetch video metadata and 
